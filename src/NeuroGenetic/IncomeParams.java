@@ -16,4 +16,5 @@ public class IncomeParams {
     public ArrayList<Double> getParams(){
         return incomeParams;
     }
+
 }
