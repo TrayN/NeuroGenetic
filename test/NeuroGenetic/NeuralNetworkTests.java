@@ -32,7 +32,7 @@ public class NeuralNetworkTests {
     */
     @Before
     public void setUp() {
-        network = new NeuralNetwork(1,3,3,0.05);
+        //network = new NeuralNetwork(1,3,3,0.05);
     }/*
     
     @After
@@ -95,12 +95,12 @@ public class NeuralNetworkTests {
         network.saveNetworkToFile("NetPromo.neunet");
     }*/
     
-    @Test
+    /*@Test
     public void openNetworkTest() throws FileNotFoundException, IOException, IOException, ClassNotFoundException{
         network = new NeuralNetwork("NetTest_1.neunet");
-    }
+    }*/
     
-    /*@Test
+    @Test
     public void creatingDatabases() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException{
         ArrayList <Double> param = new ArrayList <>();
         for(int i=1; i<21;i++){
@@ -110,46 +110,115 @@ public class NeuralNetworkTests {
             network.startMultipulLearning();
             network.saveNetworkToFile("NetTest_"+String.valueOf(i) +".neunet");
             ///////////
+            param.add((30.0+network.tMax)*network.tA);
+            param.add((0.4+network.sMax)*network.sA);
+            param.add((86.0+network.vMax)*network.vA);
+            System.out.println(network.countMultiFunction(param)-0.5);
+            param.clear();
             
+            param.add((25.0+network.tMax)*network.tA);
+            param.add((0.5+network.sMax)*network.sA);
+            param.add((80.0+network.vMax)*network.vA);
+            System.out.println(network.countMultiFunction(param)-0.5);
+            param.clear();
+            
+            param.add((40.0+network.tMax)*network.tA);
+            param.add((0.6+network.sMax)*network.sA);
+            param.add((71.0+network.vMax)*network.vA);
+            System.out.println(network.countMultiFunction(param)-0.5);
+            param.clear();
+            
+            param.add((20.0+network.tMax)*network.tA);
+            param.add((1+network.sMax)*network.sA);
+            param.add((62.0+network.vMax)*network.vA);
+            System.out.println(network.countMultiFunction(param)-0.5);
+            param.clear();
+            
+            param.add((30.0+network.tMax)*network.tA);
+            param.add((2.5+network.sMax)*network.sA);
+            param.add((34.0+network.vMax)*network.vA);
+            System.out.println(network.countMultiFunction(param)-0.5);
+            param.clear();
+            
+            param.add((25.0+network.tMax)*network.tA);
+            param.add((0.4+network.sMax)*network.sA);
+            param.add((88.0+network.vMax)*network.vA);
+            System.out.println(network.countMultiFunction(param)-0.5);
+            param.clear();/*
             param.add(30.0/network.tMax);
             param.add(0.4/network.sMax);
             param.add(86.0/network.vMax);
-            System.out.println(network.countMultiFunction(param));
+            System.out.println(network.countMultiFunction(param)-0.5);
             param.clear();
             
             param.add(25.0/network.tMax);
             param.add(0.5/network.sMax);
             param.add(80.0/network.vMax);
-            System.out.println(network.countMultiFunction(param));
+            System.out.println(network.countMultiFunction(param)-0.5);
             param.clear();
             
             param.add(40.0/network.tMax);
             param.add(0.6/network.sMax);
             param.add(71.0/network.vMax);
-            System.out.println(network.countMultiFunction(param));
+            System.out.println(network.countMultiFunction(param)-0.5);
             param.clear();
             
             param.add(20.0/network.tMax);
             param.add(1/network.sMax);
             param.add(62.0/network.vMax);
-            System.out.println(network.countMultiFunction(param));
+            System.out.println(network.countMultiFunction(param)-0.5);
             param.clear();
             
             param.add(30.0/network.tMax);
             param.add(2.5/network.sMax);
             param.add(34.0/network.vMax);
-            System.out.println(network.countMultiFunction(param));
+            System.out.println(network.countMultiFunction(param)-0.5);
             param.clear();
             
             param.add(25.0/network.tMax);
             param.add(0.4/network.sMax);
             param.add(88.0/network.vMax);
+            System.out.println(network.countMultiFunction(param)-0.5);
+            param.clear();/*
+            param.add(30.0);
+            param.add(0.4);
+            param.add(86.0);
             System.out.println(network.countMultiFunction(param));
             param.clear();
+            
+            param.add(25.0);
+            param.add(0.5);
+            param.add(80.0);
+            System.out.println(network.countMultiFunction(param));
+            param.clear();
+            
+            param.add(40.0);
+            param.add(0.6);
+            param.add(71.0);
+            System.out.println(network.countMultiFunction(param));
+            param.clear();
+            
+            param.add(20.0);
+            param.add(1.0);
+            param.add(62.0);
+            System.out.println(network.countMultiFunction(param));
+            param.clear();
+            
+            param.add(30.0);
+            param.add(2.5);
+            param.add(34.0);
+            System.out.println(network.countMultiFunction(param));
+            param.clear();
+            
+            param.add(25.0);
+            param.add(0.4);
+            param.add(88.0);
+            System.out.println(network.countMultiFunction(param));
+            param.clear();*/
             
             System.out.println("Results for Network number"+String.valueOf(i) +"------------------------------");
             
             //////////////
         }
-    }*/
+    }
 }

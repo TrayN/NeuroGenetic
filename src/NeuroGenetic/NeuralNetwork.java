@@ -22,7 +22,7 @@ public class NeuralNetwork {
     private IncomeParams incomeParams;
     private Double outcomeValue = 0.0;
     private double maxError=0.0;
-    public double tMax,sMax,vMax;
+    public double tMax,sMax,vMax,tA,sA,vA;
     
     public NeuralNetwork(int incomeLayoutNeuronCount, //int outcomeLayoutNeuronCount,
                          int hideLayoutsCount, int hideLayoutNeuronCount, double error){
@@ -55,11 +55,31 @@ public class NeuralNetwork {
             set.next();
             vMax = Double.valueOf(set.getString(1));
             set = ibCore.executeSQL("Select * from "+tableName);
-            while (set.next()){
+            /*while (set.next()){
                 ArrayList <Double> params = new ArrayList <Double>();
                 params.add(Double.valueOf(set.getString(1))/tMax);
                 params.add(Double.valueOf(set.getString(2))/sMax);
                 params.add(Double.valueOf(set.getString(3))/vMax);
+                params.add(Double.valueOf(set.getString(1)));
+                params.add(Double.valueOf(set.getString(2)));
+                params.add(Double.valueOf(set.getString(3)));
+                incomeParamsArrLearn.add(new IncomeParams(params));
+                
+            }*/
+            
+            //eperimental part of gettin 0.2 ... 0.8 range
+            //set.next();
+            tA=(0.8/(2*tMax))*0.75;
+            sA=(0.8/(2*sMax))*0.75;
+            vA=(0.8/(2*vMax))*0.75;
+            while (set.next()){
+                ArrayList <Double> params = new ArrayList <Double>();
+                params.add((Double.valueOf(set.getString(1))+tMax)*tA);
+                params.add((Double.valueOf(set.getString(2))+sMax)*sA);
+                params.add((Double.valueOf(set.getString(3))+vMax)*vA);
+                //params.add(Double.valueOf(set.getString(1)));
+                //params.add(Double.valueOf(set.getString(2)));
+                //params.add(Double.valueOf(set.getString(3)));
                 incomeParamsArrLearn.add(new IncomeParams(params));
                 
             }
@@ -304,6 +324,10 @@ public class NeuralNetwork {
         fObject.writeObject(tMax);
         fObject.writeObject(sMax);
         fObject.writeObject(vMax);
+        //experimental part
+        fObject.writeObject(tA);
+        fObject.writeObject(sA);
+        fObject.writeObject(vA);
         fObject.flush();
         fObject.close();
         fStream.close();
@@ -320,6 +344,10 @@ public class NeuralNetwork {
         tMax = (Double)fObject.readObject();
         sMax = (Double)fObject.readObject();
         vMax = (Double)fObject.readObject();
+        //experimental part
+        tA = (Double)fObject.readObject();
+        sA = (Double)fObject.readObject();
+        vA = (Double)fObject.readObject();
         fObject.close();
     }
     
